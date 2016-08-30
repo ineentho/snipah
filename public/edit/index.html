@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<style>
+			.topleft{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.top{
+				z-index: 3;
+			}
+			.character{
+				position: absolute;
+				z-index: 2;
+			}
+		</style>
+		<script>
+			var characters = {};
+		
+			var i;
+			
+			function gen(){
+				prompt("character positions", "possiblePositions = " + JSON.stringify(characters));
+			}
+			
+			var i = 0;
+			
+			window.addEventListener("load", function(){
+				document.getElementsByClassName("topleft")[0].addEventListener("click", function(e){
+					var characterContainer = document.getElementById("characters");
+					
+					var character = document.createElement("img");
+					character.src = "../images/character.png";
+					character.style.cssText = "top:" + (e.y - 13) + ";left:" + (e.x - 22);
+					character.className = "character";
+					
+					characters[i] = {x: e.x - 22, y: e.y - 13};
+					i++;
+					
+					characterContainer.appendChild(character);
+				});
+			});
+		</script>
+	</head>
+	<img src="../maps/mapA/foreground.png" class="topleft top" />
+	<div id="characters" class="topleft"></div>
+	
+	<img src="../maps/mapA/bg.png" class="topleft" />
+	
+	<a href="javascript:gen()" style="position:absolute;left: 20px;top: 600px;">Done</a>
+</html>

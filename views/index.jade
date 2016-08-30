@@ -1,0 +1,51 @@
+!!! 5
+html
+  head
+    link(href='http://fonts.googleapis.com/css?family=Ubuntu:400,700', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/main.css')
+    script(type='text/javascript', src='/javascripts/buzz.js')
+    script(type='text/javascript', src='/javascripts/startscreen.js')
+    script(type='text/javascript', src='/javascripts/game.js')
+    script(type='text/javascript', src='/javascripts/ui.js')
+    script(src='/socket.io/socket.io.js')
+  body
+    input#gameId(type='hidden', value='#{gameId}')
+    input#mapName(type='hidden', value='#{mapName}')
+    .drawContainer
+      canvas#draw
+    #pingDisplay
+    #countdown 3
+    #outOfFocus Game out of focus. Click anywhere to continue.
+    .menu
+      .menuItems.errorMessage
+        h2 Connection to the server was lost.
+      .menuItems.connecting
+        h2 Connecting to the server...
+      .menuItems.startButton
+        button#startNewGame Start new game
+      .menuItems.mapSelect
+        h2 Select map:
+        button#mapA.selectMap Fields of Justice
+        //button#mapB.selectMap Coming soon
+      .menuItems.waitingForPartner
+        | Give this link to your opponent:
+        br
+        input#link(type='text')
+        h2 Waiting for your friend...
+      .menuItems.loadingGame
+        h2 Connecting to your friend..
+      .menuItems.readyCheck
+        .warning
+          | Click here to allow the game to lock your cursor.
+          br
+          small This is required in order to have a realistic sniper scope.
+        p.readyCheckInfo
+        .leftReadyCheck
+          .readyCheckName PlayerA
+          #explainA
+          a#toggleReadyA.toggleReady(href='#') Not Ready
+        .rightReadyCheck
+          .readyCheckName PlayerB
+          #explainB
+          a#toggleReadyB.toggleReady(href='#') Not Ready
+      .menuItems.endMessage§
