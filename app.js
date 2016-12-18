@@ -3,6 +3,7 @@ const Router = require('koa-router')
 
 const app = new Koa()
 
+const server = require('http').Server(app.callback())
 
 const router = new Router()
 
@@ -16,4 +17,6 @@ app
 const port = process.env.PORT || 3000
 
 console.log(`Listening on port ${port}`)
-app.listen(port)
+server.listen(port)
+
+require('./server/socketServer.js')(server)

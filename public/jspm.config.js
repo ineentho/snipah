@@ -43,6 +43,9 @@ SystemJS.config({
         },
         "*.scss": {
           "loader": "sass"
+        },
+        "*.hbs": {
+          "loader": "hbs"
         }
       }
     }
@@ -59,6 +62,10 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "child_process": "npm:jspm-nodelibs-child_process@0.2.0",
+    "http": "npm:jspm-nodelibs-http@0.2.0",
+    "https": "npm:jspm-nodelibs-https@0.2.1",
+    "hbs": "github:davis/plugin-hbs@1.2.3",
     "assert": "npm:jspm-nodelibs-assert@0.2.0",
     "buffer": "npm:jspm-nodelibs-buffer@0.2.1",
     "constants": "npm:jspm-nodelibs-constants@0.2.0",
@@ -70,10 +77,14 @@ SystemJS.config({
     "path": "npm:jspm-nodelibs-path@0.2.1",
     "process": "npm:jspm-nodelibs-process@0.2.0",
     "sass": "github:mobilexag/plugin-sass@0.5.1",
+    "socket.io-client": "npm:socket.io-client@1.7.2",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
+    "tls": "npm:jspm-nodelibs-tls@0.2.0",
+    "url": "npm:jspm-nodelibs-url@0.2.0",
     "util": "npm:jspm-nodelibs-util@0.2.1",
-    "vm": "npm:jspm-nodelibs-vm@0.2.0"
+    "vm": "npm:jspm-nodelibs-vm@0.2.0",
+    "zlib": "npm:jspm-nodelibs-zlib@0.2.2"
   },
   packages: {
     "github:mobilexag/plugin-sass@0.5.1": {
@@ -408,6 +419,142 @@ SystemJS.config({
       "map": {
         "punycode": "npm:punycode@1.3.2",
         "querystring": "npm:querystring@0.2.0"
+      }
+    },
+    "github:davis/plugin-hbs@1.2.3": {
+      "map": {
+        "handlebars": "github:components/handlebars.js@4.0.5"
+      }
+    },
+    "npm:socket.io-client@1.7.2": {
+      "map": {
+        "debug": "npm:debug@2.3.3",
+        "backo2": "npm:backo2@1.0.2",
+        "component-bind": "npm:component-bind@1.0.0",
+        "has-binary": "npm:has-binary@0.1.7",
+        "component-emitter": "npm:component-emitter@1.2.1",
+        "indexof": "npm:indexof@0.0.1",
+        "parseuri": "npm:parseuri@0.0.5",
+        "object-component": "npm:object-component@0.0.3",
+        "to-array": "npm:to-array@0.1.4",
+        "socket.io-parser": "npm:socket.io-parser@2.3.1",
+        "engine.io-client": "npm:engine.io-client@1.8.2"
+      }
+    },
+    "npm:socket.io-parser@2.3.1": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "component-emitter": "npm:component-emitter@1.1.2",
+        "isarray": "npm:isarray@0.0.1",
+        "json3": "npm:json3@3.3.2"
+      }
+    },
+    "npm:debug@2.3.3": {
+      "map": {
+        "ms": "npm:ms@0.7.2"
+      }
+    },
+    "npm:has-binary@0.1.7": {
+      "map": {
+        "isarray": "npm:isarray@0.0.1"
+      }
+    },
+    "npm:debug@2.2.0": {
+      "map": {
+        "ms": "npm:ms@0.7.1"
+      }
+    },
+    "npm:parseuri@0.0.5": {
+      "map": {
+        "better-assert": "npm:better-assert@1.0.2"
+      }
+    },
+    "npm:engine.io-client@1.8.2": {
+      "map": {
+        "component-emitter": "npm:component-emitter@1.2.1",
+        "debug": "npm:debug@2.3.3",
+        "indexof": "npm:indexof@0.0.1",
+        "parseuri": "npm:parseuri@0.0.5",
+        "component-inherit": "npm:component-inherit@0.0.3",
+        "has-cors": "npm:has-cors@1.1.0",
+        "xmlhttprequest-ssl": "npm:xmlhttprequest-ssl@1.5.3",
+        "parsejson": "npm:parsejson@0.0.3",
+        "parseqs": "npm:parseqs@0.0.5",
+        "yeast": "npm:yeast@0.1.2",
+        "engine.io-parser": "npm:engine.io-parser@1.3.2",
+        "ws": "npm:ws@1.1.1",
+        "node-ws": "npm:ws@1.1.1",
+        "node-xmlhttprequest-ssl": "npm:xmlhttprequest-ssl@1.5.3"
+      }
+    },
+    "npm:better-assert@1.0.2": {
+      "map": {
+        "callsite": "npm:callsite@1.0.0"
+      }
+    },
+    "npm:parseqs@0.0.5": {
+      "map": {
+        "better-assert": "npm:better-assert@1.0.2"
+      }
+    },
+    "npm:parsejson@0.0.3": {
+      "map": {
+        "better-assert": "npm:better-assert@1.0.2"
+      }
+    },
+    "npm:engine.io-parser@1.3.2": {
+      "map": {
+        "has-binary": "npm:has-binary@0.1.7",
+        "arraybuffer.slice": "npm:arraybuffer.slice@0.0.6",
+        "base64-arraybuffer": "npm:base64-arraybuffer@0.1.5",
+        "blob": "npm:blob@0.0.4",
+        "wtf-8": "npm:wtf-8@1.0.0",
+        "after": "npm:after@0.8.2"
+      }
+    },
+    "npm:ws@1.1.1": {
+      "map": {
+        "ultron": "npm:ultron@1.0.2",
+        "options": "npm:options@0.0.6",
+        "utf-8-validate": "npm:utf-8-validate@1.2.2",
+        "bufferutil": "npm:bufferutil@1.2.1"
+      }
+    },
+    "npm:utf-8-validate@1.2.2": {
+      "map": {
+        "bindings": "npm:bindings@1.2.1",
+        "nan": "npm:nan@2.4.0"
+      }
+    },
+    "npm:bufferutil@1.2.1": {
+      "map": {
+        "bindings": "npm:bindings@1.2.1",
+        "nan": "npm:nan@2.4.0"
+      }
+    },
+    "npm:jspm-nodelibs-http@0.2.0": {
+      "map": {
+        "http-browserify": "npm:stream-http@2.5.0"
+      }
+    },
+    "npm:stream-http@2.5.0": {
+      "map": {
+        "builtin-status-codes": "npm:builtin-status-codes@2.0.0",
+        "xtend": "npm:xtend@4.0.1",
+        "inherits": "npm:inherits@2.0.3",
+        "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
+        "readable-stream": "npm:readable-stream@2.2.2"
+      }
+    },
+    "npm:jspm-nodelibs-zlib@0.2.2": {
+      "map": {
+        "browserify-zlib": "npm:browserify-zlib@0.1.4"
+      }
+    },
+    "npm:browserify-zlib@0.1.4": {
+      "map": {
+        "readable-stream": "npm:readable-stream@2.2.2",
+        "pako": "npm:pako@0.2.9"
       }
     }
   }
