@@ -29,7 +29,7 @@ export default class Menu extends EventEmitter {
     this.element.querySelector(`[data-view="${view}"]`).classList.remove('hidden')
 
     if (view === 'level-select') {
-      this.populateLevelSelect();
+      this.populateLevelSelect()
     }
   }
 

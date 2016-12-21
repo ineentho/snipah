@@ -13,11 +13,7 @@ const createNewLobby = () => {
 
 
 const findLobby = (id) => {
-  return lobbys[lobby.id]
-}
-
-const joinLobby = (id) => {
-  
+  return lobbys[id]
 }
 
 module.exports = { createNewLobby, findLobby }

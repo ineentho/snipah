@@ -1,0 +1,18 @@
+<div>
+  <ul>
+    {{#each clients}}
+      <li>
+        {{id}}:
+
+        {{#if ready}}
+          Ready
+        {{else}}
+          Not Ready
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+  <hr>
+
+  <label><input type="checkbox" name="readyCheck"> Ready</label>
+</div>
