@@ -6,7 +6,7 @@ let i = Date.now()
 export default class ServerSocket extends EventEmitter {
   constructor () {
     super()
-    this.socket = io(`${location.protocol}//${location.host}`)
+    this.socket = io(`${window.location.protocol}//${window.location.host}`)
 
     this.socket.on('connect', () => {
       this.emit('connect')
@@ -19,12 +19,10 @@ export default class ServerSocket extends EventEmitter {
 
   createNewRequest () {
     let respond
-    const promise = new Promise ((resolve, reject) => {
-
+    const promise = new Promise((resolve, reject) => {
       respond = (message) => {
         resolve(message)
       }
-
     })
     return {
       ticket: i++,
