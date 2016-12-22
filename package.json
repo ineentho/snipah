@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "babel-eslint": "^7.1.1",
+    "jspm": "^0.17.0-beta.32",
     "koa": "^2.0.0",
     "koa-router": "^7.0.1",
     "koa-send": "^3.2.0",
@@ -10,7 +11,8 @@
   "scripts": {
     "start": "node app.js",
     "lint": "eslint .",
-    "build": "jspm build app --minify"
+    "build": "(cd public && jspm build app --minify)",
+    "postinstall": "(cd public && jspm i)"
   },
   "devDependencies": {
     "eslint": "^3.12.2",
