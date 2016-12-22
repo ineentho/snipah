@@ -63,6 +63,8 @@ const bootstrap = () => {
   if (routeJoinGame) {
     const lobby = createLobby()
     lobby.join(parseInt(routeJoinGame[1]))
+  } else if (window.location.pathname === '/sp') {
+    createGame()
   } else if (window.location.pathname !== '/') {
     window.history.pushState({}, '', '/')
     createMenu()

@@ -62,6 +62,7 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "fetch": "npm:isomorphic-fetch@2.2.1",
     "child_process": "npm:jspm-nodelibs-child_process@0.2.0",
     "http": "npm:jspm-nodelibs-http@0.2.0",
     "https": "npm:jspm-nodelibs-https@0.2.1",
@@ -78,6 +79,7 @@ SystemJS.config({
     "process": "npm:jspm-nodelibs-process@0.2.0",
     "sass": "github:mobilexag/plugin-sass@0.5.1",
     "socket.io-client": "npm:socket.io-client@1.7.2",
+    "stats.js": "npm:stats.js@0.17.0",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
     "tls": "npm:jspm-nodelibs-tls@0.2.0",
@@ -555,6 +557,23 @@ SystemJS.config({
       "map": {
         "readable-stream": "npm:readable-stream@2.2.2",
         "pako": "npm:pako@0.2.9"
+      }
+    },
+    "npm:isomorphic-fetch@2.2.1": {
+      "map": {
+        "node-fetch": "npm:node-fetch@1.6.3",
+        "whatwg-fetch": "npm:whatwg-fetch@2.0.1"
+      }
+    },
+    "npm:node-fetch@1.6.3": {
+      "map": {
+        "encoding": "npm:encoding@0.1.12",
+        "is-stream": "npm:is-stream@1.1.0"
+      }
+    },
+    "npm:encoding@0.1.12": {
+      "map": {
+        "iconv-lite": "npm:iconv-lite@0.4.15"
       }
     }
   }

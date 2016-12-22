@@ -1,0 +1,19 @@
+{
+  "name": "Floaty",
+  "layers": [{
+    "name": "1",
+    "image": "layer1.png"
+  }, {
+    "name": "2",
+    "image": "layer2.png"
+  }, {
+    "name": "3",
+    "image": "layer3.png"
+  }, {
+    "name": "4",
+    "image": "layer4.png"
+  }, {
+    "name": "5",
+    "image": "layer5.png"
+  }]
+}
