@@ -11,7 +11,7 @@ SystemJS.config({
   },
   nodeConfig: {
     "paths": {
-      "app/": "src/"
+      "app/": "app/"
     }
   },
   devConfig: {

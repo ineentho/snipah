@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "jspm build app --minify"
   },
   "devDependencies": {
     "eslint": "^3.12.2",
