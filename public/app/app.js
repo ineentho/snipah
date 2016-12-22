@@ -1,7 +1,7 @@
 import 'systemjs-hot-reloader/default-listener.js'
 import Menu from './menu/Menu.js'
 import Lobby from './lobby/Lobby.js'
-import ServerSocket from './serverSocket.js'
+import ServerSocket from './ServerSocket.js'
 import template from './app.hbs'
 import Game from './game/Game.js'
 
