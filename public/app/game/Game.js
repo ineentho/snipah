@@ -1,7 +1,8 @@
-import { EventEmitter } from 'events'
-import { loadMap } from 'app/util/mapLoader.js'
+import {EventEmitter} from 'events'
+import {loadMap} from 'app/util/mapLoader.js'
 import Stats from 'stats.js'
 import './game.scss'
+import {autoDetectRenderer, Container, Sprite} from 'pixi.js'
 
 export default class Game extends EventEmitter {
   constructor (serverSocket, client) {
@@ -9,80 +10,65 @@ export default class Game extends EventEmitter {
     this.element = document.createElement('div')
     this.element.classList.add('snipah-game')
 
-    this.canvas = document.createElement('canvas')
-    this.element.appendChild(this.canvas)
+    this.sensitivity = 1
 
     this.stats = new Stats()
-    document.body.appendChild(this.stats.dom)
 
-    this.sensitivity = 0.2
-
-    this.client = client
-    this.serverSocket = serverSocket
-    serverSocket.socket.on('lobby-update', ({id, message, params}) => {
-      if (id === this.id) {
-        this.handleMessage(message, params)
-      }
-    })
-
-    this.load()
-
-    this.cameraX = 0
-    this.cameraY = 0
-
-    this.canvas.addEventListener('click', () => this.requestPointerLock())
-  }
-
-  resize () {
-    this.canvas.width = this.canvas.clientWidth
-    this.canvas.height = this.canvas.clientWidth
-    this.draw()
-  }
-
-  updatePosition (e) {
-    this.cameraX -= e.movementX * this.sensitivity
-    this.cameraY -= e.movementY * this.sensitivity
-  }
-
-  requestPointerLock () {
-    this.canvas.requestPointerLock()
-  }
-
-  load () {
-    this.ctx = this.canvas.getContext('2d')
+    this.element.appendChild(this.stats.dom)
 
     loadMap('floaty').then(map => {
       this.map = map
-      document.addEventListener('mousemove', this.updatePosition.bind(this), false)
-      window.addEventListener('resize', this.resize.bind(this))
 
-      this.loop = this.loop.bind(this)
-      this.resize()
-      this.requestNextLoop()
+      console.log(map)
+
+      this.initialize()
     })
+
+    this.gameLoop = this.gameLoop.bind(this)
   }
 
-  requestNextLoop () {
-    window.requestAnimationFrame(this.loop)
-  }
+  initialize () {
+    this.element.addEventListener('click', () => this.requestPointerLock())
+    this.renderer = autoDetectRenderer(1920, 1080)
+    this.element.appendChild(this.renderer.view)
 
-  draw () {
-    const ctx = this.ctx
+    this.renderer.view.style.position = 'absolute'
+    this.renderer.view.style.display = 'block'
+    this.renderer.autoResize = true
+    this.resize()
 
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this.stage = new Container()
 
-    ctx.translate(this.cameraX, this.cameraY)
+    window.addEventListener('resize', this.resize.bind(this))
+    document.addEventListener('mousemove', this.updatePosition.bind(this), false)
 
-    this.map.layers.forEach(layer => {
-      ctx.drawImage(layer.image, 0, 0)
+    this.backgroundSpites = this.map.layers.map(layer => new Sprite(layer.texture))
+    this.backgroundSpites.forEach(sprite => {
+      this.stage.addChild(sprite)
     })
+
+    this.gameLoop()
   }
 
-  loop () {
+  resize () {
+    this.renderer.resize(window.innerWidth, window.innerHeight)
+  }
+
+  updatePosition (e) {
+    this.stage.x -= e.movementX * this.sensitivity
+    this.stage.y -= e.movementY * this.sensitivity
+  }
+
+  requestPointerLock () {
+    this.element.requestPointerLock()
+  }
+
+  gameLoop () {
+    window.requestAnimationFrame(this.gameLoop)
     this.stats.begin()
-    this.draw()
+
+    this.renderer.render(this.stage)
+
     this.stats.end()
-    this.requestNextLoop()
   }
 }

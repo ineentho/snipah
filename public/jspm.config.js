@@ -36,6 +36,8 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "lodash": "npm:lodash@4.17.3",
+    "pixi.js": "npm:pixi.js@4.3.0",
     "fetch": "npm:isomorphic-fetch@2.2.1",
     "child_process": "npm:jspm-nodelibs-child_process@0.2.0",
     "http": "npm:jspm-nodelibs-http@0.2.0",
@@ -557,6 +559,23 @@ SystemJS.config({
         "inherits": "npm:inherits@2.0.3",
         "bn.js": "npm:bn.js@4.11.6",
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
+      }
+    },
+    "npm:pixi.js@4.3.0": {
+      "map": {
+        "object-assign": "npm:object-assign@4.1.0",
+        "eventemitter3": "npm:eventemitter3@2.0.2",
+        "pixi-gl-core": "npm:pixi-gl-core@1.0.3",
+        "bit-twiddle": "npm:bit-twiddle@1.0.2",
+        "ismobilejs": "npm:ismobilejs@0.4.0",
+        "earcut": "npm:earcut@2.1.1",
+        "resource-loader": "npm:resource-loader@1.8.0"
+      }
+    },
+    "npm:resource-loader@1.8.0": {
+      "map": {
+        "eventemitter3": "npm:eventemitter3@2.0.2",
+        "parse-uri": "npm:parse-uri@1.0.0"
       }
     }
   }
