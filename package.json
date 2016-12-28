@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "build": "(cd public && jspm build app --minify)",
     "postinstall": "(cd public && jspm i)",
-    "clean": "rm build.js; rm -r node_modules; rm -r public/jspm_packages"
+    "clean": "rm build.js; rm -r node_modules; rm -r public/jspm_packages",
+    "test": "npm run lint && npm run build"
   },
   "devDependencies": {
     "eslint": "^3.12.2",
