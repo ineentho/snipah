@@ -4,6 +4,11 @@ module.exports = class Lobby {
   constructor () {
     this.id = idCounter++
 
+    this.lobbyOptions = {
+      scopeZoom: 2,
+      map: 'random'
+    }
+
     this.log('created')
 
     this.clients = []
@@ -16,6 +21,7 @@ module.exports = class Lobby {
 
     setTimeout(() => {
       this.sendClientList()
+      this.sendLobbyOptions(client)
 
       if (this.clients.length === 2) {
         this.enterReadyCheck()
@@ -25,6 +31,10 @@ module.exports = class Lobby {
 
   sendClientList () {
     this.sendMessage('client-list', this.clients.map(({client, ready}) => ({ id: client.id, ready })))
+  }
+
+  sendLobbyOptions (client) {
+    this.sendMessageToClient(client, 'lobby-options', this.lobbyOptions)
   }
 
   setReady (clientId, status) {
@@ -45,6 +55,14 @@ module.exports = class Lobby {
     }
   }
 
+  setLobbyOptions (clientId, lobbyOptions) {
+    this.lobbyOptions = lobbyOptions
+
+    this.clients.filter(({client}) => client.id !== clientId).forEach(({client}) => {
+      this.sendLobbyOptions(client)
+    })
+  }
+
   enterReadyCheck () {
     this.log('enter ready check')
     this.sendMessage('enter-ready-check')
@@ -52,8 +70,12 @@ module.exports = class Lobby {
 
   sendMessage (message, params) {
     this.clients.forEach(({client}) => {
-      client.emit('lobby-update', { id: this.id, message, params })
+      this.sendMessageToClient(client, message, params)
     })
+  }
+
+  sendMessageToClient (client, message, params) {
+    client.emit('lobby-update', { id: this.id, message, params })
   }
 
   log (msg) {

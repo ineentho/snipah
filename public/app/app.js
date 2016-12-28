@@ -51,7 +51,7 @@ const createMenu = () => {
   const menu = new Menu()
   setView(menu.element)
 
-  menu.on('select-level', level => {
+  menu.on('new-game', level => {
     const lobby = createLobby()
     lobby.create()
   })

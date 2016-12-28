@@ -56,6 +56,18 @@ module.exports = class Client {
     return true
   }
 
+  handleSetLobbyOptions ({lobbyId, lobbyOptions}) {
+    const lobby = lobbyManager.findLobby(lobbyId)
+
+    if (!lobby) {
+      return { error: 'no_such_lobby' }
+    }
+
+    lobby.setLobbyOptions(this.id, lobbyOptions)
+
+    return true
+  }
+
   emit (id, params) {
     this.socket.emit(id, params)
   }
@@ -68,6 +80,8 @@ module.exports = class Client {
         return this.handleJoinLobby(params)
       case 'lobby-ready':
         return this.handleLobbyReady(params)
+      case 'set-lobby-options':
+        return this.handleSetLobbyOptions(params)
     }
   }
 

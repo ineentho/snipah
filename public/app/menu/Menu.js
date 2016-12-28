@@ -19,7 +19,8 @@ export default class Menu extends EventEmitter {
 
     newGame.addEventListener('click', e => {
       e.preventDefault()
-      this.showView('level-select')
+      this.emit('new-game')
+      // this.showView('level-select')
     })
   }
 
