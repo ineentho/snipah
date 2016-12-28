@@ -7,25 +7,6 @@ SystemJS.config({
   browserConfig: {
     "baseURL": "/"
   },
-  devConfig: {
-    "map": {
-      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0"
-    },
-    "packages": {
-      "github:capaj/systemjs-hot-reloader@0.6.0": {
-        "map": {
-          "debug": "npm:debug@2.4.4",
-          "weakee": "npm:weakee@1.0.0",
-          "socket.io-client": "github:socketio/socket.io-client@1.7.2"
-        }
-      },
-      "npm:debug@2.4.4": {
-        "map": {
-          "ms": "npm:ms@0.7.2"
-        }
-      }
-    }
-  },
   transpiler: "plugin-babel",
   packages: {
     "app": {
@@ -75,6 +56,8 @@ SystemJS.config({
     "stats.js": "npm:stats.js@0.17.0",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
+    "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0",
+    "systemjs-plugin-babel": "npm:systemjs-plugin-babel@0.0.17",
     "tls": "npm:jspm-nodelibs-tls@0.2.0",
     "url": "npm:jspm-nodelibs-url@0.2.0",
     "util": "npm:jspm-nodelibs-util@0.2.1",
@@ -84,8 +67,8 @@ SystemJS.config({
   packages: {
     "github:mobilexag/plugin-sass@0.5.1": {
       "map": {
-        "postcss": "npm:postcss@5.2.6",
-        "autoprefixer": "npm:autoprefixer@6.5.4",
+        "postcss": "npm:postcss@5.2.8",
+        "autoprefixer": "npm:autoprefixer@6.6.0",
         "css-url-rewriter-ex": "npm:css-url-rewriter-ex@1.0.6",
         "css-asset-copier": "npm:css-asset-copier@1.0.2",
         "sass.js": "npm:sass.js@0.9.13",
@@ -93,24 +76,6 @@ SystemJS.config({
         "path": "npm:jspm-nodelibs-path@0.2.0",
         "fs": "npm:jspm-nodelibs-fs@0.2.0",
         "reqwest": "github:ded/reqwest@2.0.5"
-      }
-    },
-    "npm:autoprefixer@6.5.4": {
-      "map": {
-        "postcss": "npm:postcss@5.2.6",
-        "normalize-range": "npm:normalize-range@0.1.2",
-        "postcss-value-parser": "npm:postcss-value-parser@3.3.0",
-        "num2fraction": "npm:num2fraction@1.2.2",
-        "browserslist": "npm:browserslist@1.4.0",
-        "caniuse-db": "npm:caniuse-db@1.0.30000597"
-      }
-    },
-    "npm:postcss@5.2.6": {
-      "map": {
-        "supports-color": "npm:supports-color@3.1.2",
-        "source-map": "npm:source-map@0.5.6",
-        "js-base64": "npm:js-base64@2.1.9",
-        "chalk": "npm:chalk@1.1.3"
       }
     },
     "npm:chalk@1.1.3": {
@@ -161,11 +126,6 @@ SystemJS.config({
     "npm:has-ansi@2.0.0": {
       "map": {
         "ansi-regex": "npm:ansi-regex@2.0.0"
-      }
-    },
-    "npm:browserslist@1.4.0": {
-      "map": {
-        "caniuse-db": "npm:caniuse-db@1.0.30000597"
       }
     },
     "npm:rimraf@2.5.4": {
@@ -346,7 +306,7 @@ SystemJS.config({
         "create-hash": "npm:create-hash@1.1.2",
         "evp_bytestokey": "npm:evp_bytestokey@1.0.0",
         "pbkdf2": "npm:pbkdf2@3.0.9",
-        "asn1.js": "npm:asn1.js@4.9.0"
+        "asn1.js": "npm:asn1.js@4.9.1"
       }
     },
     "npm:browserify-aes@1.0.6": {
@@ -385,13 +345,6 @@ SystemJS.config({
     "npm:hash.js@1.0.3": {
       "map": {
         "inherits": "npm:inherits@2.0.3"
-      }
-    },
-    "npm:asn1.js@4.9.0": {
-      "map": {
-        "inherits": "npm:inherits@2.0.3",
-        "bn.js": "npm:bn.js@4.11.6",
-        "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     },
     "npm:des.js@1.0.0": {
@@ -524,7 +477,7 @@ SystemJS.config({
     "npm:bufferutil@1.2.1": {
       "map": {
         "bindings": "npm:bindings@1.2.1",
-        "nan": "npm:nan@2.4.0"
+        "nan": "npm:nan@2.5.0"
       }
     },
     "npm:jspm-nodelibs-http@0.2.0": {
@@ -567,6 +520,43 @@ SystemJS.config({
     "npm:encoding@0.1.12": {
       "map": {
         "iconv-lite": "npm:iconv-lite@0.4.15"
+      }
+    },
+    "github:capaj/systemjs-hot-reloader@0.6.0": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "weakee": "npm:weakee@1.0.0",
+        "socket.io-client": "github:socketio/socket.io-client@1.4.4"
+      }
+    },
+    "npm:autoprefixer@6.6.0": {
+      "map": {
+        "postcss": "npm:postcss@5.2.8",
+        "caniuse-db": "npm:caniuse-db@1.0.30000602",
+        "browserslist": "npm:browserslist@1.5.1",
+        "num2fraction": "npm:num2fraction@1.2.2",
+        "normalize-range": "npm:normalize-range@0.1.2",
+        "postcss-value-parser": "npm:postcss-value-parser@3.3.0"
+      }
+    },
+    "npm:postcss@5.2.8": {
+      "map": {
+        "chalk": "npm:chalk@1.1.3",
+        "supports-color": "npm:supports-color@3.1.2",
+        "js-base64": "npm:js-base64@2.1.9",
+        "source-map": "npm:source-map@0.5.6"
+      }
+    },
+    "npm:browserslist@1.5.1": {
+      "map": {
+        "caniuse-db": "npm:caniuse-db@1.0.30000602"
+      }
+    },
+    "npm:asn1.js@4.9.1": {
+      "map": {
+        "inherits": "npm:inherits@2.0.3",
+        "bn.js": "npm:bn.js@4.11.6",
+        "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
     }
   }

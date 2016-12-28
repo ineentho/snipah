@@ -7,11 +7,11 @@
       "hbs": "github:davis/plugin-hbs@^1.2.3",
       "sass": "github:mobilexag/plugin-sass@^0.5.1",
       "socket.io-client": "npm:socket.io-client@^1.7.2",
-      "stats.js": "npm:stats.js@^0.17.0"
+      "stats.js": "npm:stats.js@^0.17.0",
+      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6",
+      "systemjs-plugin-babel": "npm:systemjs-plugin-babel@^0.0.17"
     },
-    "devDependencies": {
-      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.6.0"
-    },
+    "devDependencies": {},
     "peerDependencies": {
       "assert": "npm:jspm-nodelibs-assert@^0.2.0",
       "buffer": "npm:jspm-nodelibs-buffer@^0.2.0",
@@ -35,9 +35,6 @@
       "zlib": "npm:jspm-nodelibs-zlib@^0.2.0"
     },
     "overrides": {
-      "github:socketio/socket.io-client@1.7.2": {
-        "main": "socket.io.js"
-      },
       "npm:browserify-zlib@0.1.4": {
         "dependencies": {
           "readable-stream": "^2.0.2",
@@ -65,23 +62,6 @@
         }
       },
       "npm:debug@2.3.3": {
-        "main": "browser.js",
-        "jspmNodeConversion": false,
-        "format": "cjs",
-        "map": {
-          "./browser.js": {
-            "node": "./node.js"
-          },
-          "./node.js": {
-            "browser": "./browser.js"
-          },
-          "fs": "@node/fs",
-          "net": "@node/net",
-          "tty": "@node/tty",
-          "util": "@node/util"
-        }
-      },
-      "npm:debug@2.4.4": {
         "main": "browser.js",
         "jspmNodeConversion": false,
         "format": "cjs",
