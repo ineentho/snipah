@@ -14,9 +14,16 @@ appElement.innerHTML = template()
 const gameElement = appElement.querySelector('[name="game"]')
 const statusElement = appElement.querySelector('[name="status"]')
 
-const setView = (element) => {
+let currentView
+
+const setView = (view) => {
+  if (currentView && currentView.destroy) {
+    currentView.destroy()
+  }
+
+  currentView = view
   gameElement.innerHTML = ''
-  gameElement.appendChild(element)
+  gameElement.appendChild(view.element)
 }
 
 const serverSocket = new ServerSocket()
@@ -33,12 +40,12 @@ serverSocket.socket.on('identity', (id) => {
 const createGame = () => {
   const game = new Game(serverSocket, client)
 
-  setView(game.element)
+  setView(game)
 }
 
 const createLobby = () => {
   const lobby = new Lobby(serverSocket, client)
-  setView(lobby.element)
+  setView(lobby)
 
   lobby.on('start-game', () => {
     createGame()
@@ -49,7 +56,7 @@ const createLobby = () => {
 
 const createMenu = () => {
   const menu = new Menu()
-  setView(menu.element)
+  setView(menu)
 
   menu.on('new-game', level => {
     const lobby = createLobby()
@@ -71,4 +78,11 @@ const bootstrap = () => {
   } else {
     createMenu()
   }
+}
+
+export const __unload = () => {
+  if (currentView && currentView.destroy) {
+    currentView.destroy()
+  }
+  serverSocket.destroy()
 }

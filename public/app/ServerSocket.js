@@ -47,4 +47,8 @@ export default class ServerSocket extends EventEmitter {
     }
   }
 
+  destroy () {
+    this.socket.disconnect()
+  }
+
 }
